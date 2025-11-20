@@ -1,0 +1,114 @@
+                     ### sorting algorithms ###
+------------------------------------------------------------------------
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        //bubbleSort(arr,n);
+        //selectionSort(arr,n);
+        //insertionSort(arr,n);
+        //cyclicSort(arr,n);
+        //mergeSort(arr,0,n-1);
+        System.out.println(Arrays.toString(arr));
+    }
+    public static void bubbleSort(int[] arr,int n){
+       for(int i=0;i<n-1;i++){
+           for(int j=i;j<n;j++){
+               if(arr[i]>arr[j]){
+                   int temp=arr[i];
+                   arr[i]=arr[j];
+                   arr[j]=temp;
+               }
+           }
+       }
+       return;
+    }
+    public static int maxx(int[] arr,int n){
+        int maxIndex=0;
+        for(int i=0;i<=n;i++){
+            if(arr[i]>arr[maxIndex]){
+                maxIndex=i;
+            }
+        }
+        return maxIndex;
+    }
+    public static void selectionSort(int[] arr,int n){
+        for(int i=n-1;i>=0;i--){
+            int index=maxx(arr,i);
+            if(arr[i]!=arr[index]){
+                int temp=arr[i];
+                   arr[i]=arr[index];
+                   arr[index]=temp;
+            }
+        }
+        return;
+    }
+    public static void insertionSort(int[] arr,int n){
+        for(int i=1;i<n;i++){
+            for(int j=i;j>0;j--){
+                if(arr[j]>arr[j-1]){
+                    break;
+                }
+                else{
+                    int temp=arr[j];
+                    arr[j]=arr[j-1];
+                    arr[j-1]=temp;
+                }
+            }
+        }
+        return;
+    }
+    public static void cyclicSort(int[] arr, int n){
+        int i=0;
+        while(i<n){
+            int index=arr[i]-1;
+            if(arr[i]!=arr[index]){
+                int temp=arr[i];
+                arr[i]=arr[index];
+                arr[index]=temp;
+            }
+            else{
+                i++;
+            }
+        }
+        return;
+    }
+    public static void mergeArrays(int[] arr, int s, int m,int e){
+        int i=s;
+        int j=m+1;
+        int p=(e-s)+1;
+        int k=0;
+        int[] arr1=new int[p];
+        while(i<=m && j<=e){
+            if(arr[i]<=arr[j]){
+                arr1[k++]=arr[i++];
+            }
+            else{
+                arr1[k++]=arr[j++];
+            }
+        }
+        while(i<=m){
+            arr1[k++]=arr[i++];
+        }
+        while(j<=e){
+            arr1[k++]=arr[j++];
+        }
+        for(int l=0;l<arr1.length;l++){
+            arr[s+l]=arr1[l];
+        }
+    }
+    public static void mergeSort(int[] arr,int s,int e){
+        if(e-s<=0){
+            return ;
+        }
+        int m=(s+e)/2;
+        mergeSort(arr,s,m);
+        mergeSort(arr,m+1,e);
+        mergeArrays(arr,s,m,e);
+    }
+}
