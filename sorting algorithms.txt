@@ -1,4 +1,4 @@
-                     ### sorting algorithms ###
+                     #### sorting algorithms ####
 ------------------------------------------------------------------------
 import java.util.*;
 class Main {
@@ -14,6 +14,7 @@ class Main {
         //insertionSort(arr,n);
         //cyclicSort(arr,n);
         //mergeSort(arr,0,n-1);
+        quickSort(arr,0,n-1);
         System.out.println(Arrays.toString(arr));
     }
     public static void bubbleSort(int[] arr,int n){
@@ -110,5 +111,34 @@ class Main {
         mergeSort(arr,s,m);
         mergeSort(arr,m+1,e);
         mergeArrays(arr,s,m,e);
+    }
+    public static int[] sortPivot(int[] arr, int s, int e, int m){
+        int pivot=arr[m];
+        while(s<=e){
+            while(arr[s]<pivot){
+                s++;
+            }
+            while(arr[e]>pivot){
+                e--;
+            }
+            if(s<=e){
+                int temp=arr[s];
+                arr[s]=arr[e];
+                arr[e]=temp;
+                s++;
+                e--;
+            }
+        }
+        return new int[] {e,s};
+    }
+    public static void quickSort(int[] arr,int s, int e){
+        if(e-s<=0){
+            return;
+        }
+        int m=(s+e)/2;
+        int[] startEnd=sortPivot(arr,s,e,m);
+        quickSort(arr,0,startEnd[0]);
+        quickSort(arr,startEnd[1],e);
+        
     }
 }
