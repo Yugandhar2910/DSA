@@ -1,4 +1,4 @@
-                     <--- sorting algorithms --->
+                     <----- sorting algorithms ----->
 ------------------------------------------------------------------------
 import java.util.*;
 class Main {
@@ -9,7 +9,7 @@ class Main {
         for(int i=0;i<n;i++){ //
             arr[i]=sc.nextInt();
         }
-        //bubbleSort(arr,n);
+        //bubbleSort(arr,n);//Chiranjeevi
         //selectionSort(arr,n);
         //insertionSort(arr,n);
         //cyclicSort(arr,n);
